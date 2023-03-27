@@ -16,6 +16,13 @@ const config = {
         use: {
           loader: 'html-loader'
         }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
       }
     ]
   },

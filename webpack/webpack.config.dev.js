@@ -6,6 +6,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 module.exports = merge(common, {
   mode: 'development',
+  devtool:'source-map',
   devServer: {
     port: 4000,
     static: {
