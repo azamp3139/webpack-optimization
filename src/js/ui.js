@@ -45,14 +45,19 @@ function showNotification() {
 }
 
 function renderPictures() {
+  console.log('render motiv pics')
   getMotivationalPictures().then(res => {
+    console.log('res',res)
     const imageContent = `
     <div class="motivational-pictures">
     ${res.map(picture => {
       return '<img class="header-image" src="' + picture + '" alt="motivational picture" />';
     }).join('')}
     `;
-    const container = document.querySelector('motivational-pictures-container');
+    const container = document.querySelector('.motivational-pictures-container');
     container.innerHTML = imageContent;
+  })
+  .catch(err=>{
+    console.log("error",err)
   })
 }
