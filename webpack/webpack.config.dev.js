@@ -85,7 +85,17 @@ module.exports = merge(common, {
               ['imagemin-pngquant', { quality: [0.65, 0.90] }],
             ]
           }
-        }
+        },
+        generator: [
+          {
+            type: 'asset',
+            preset: 'webp-custom-name',
+            implementation: ImageMinimizerPlugin.imageminGenerate,
+            options: {
+              plugins: ['imagemin-webp']
+            }
+          }
+        ]
       })
     ]
   },
