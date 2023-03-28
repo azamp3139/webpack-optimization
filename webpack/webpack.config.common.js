@@ -6,7 +6,6 @@ const config = {
   entry: './src/js/index.js',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'js/main.js',
     clean: true
   },
   module: {

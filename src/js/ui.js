@@ -1,6 +1,8 @@
 import styles from '../styles/notification.module.css';
 import checkMarkImage from '../../images/checkmark.svg';
 import { getMotivationalPictures } from './api';
+import $ from 'jquery';
+
 export function renderTodos(todos) {
   const renderedItemArray = todos.map(function (todo) {
     const className = todo.completed ? 'completed' : ''
@@ -54,8 +56,9 @@ function renderPictures() {
       return '<img class="header-image" src="' + picture + '" alt="motivational picture" />';
     }).join('')}
     `;
-    const container = document.querySelector('.motivational-pictures-container');
-    container.innerHTML = imageContent;
+    // const container = document.querySelector('');
+    $('.motivational-pictures-container').html(imageContent);
+    //container.innerHTML = imageContent;
   })
   .catch(err=>{
     console.log("error",err)

@@ -6,7 +6,10 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 module.exports = merge(common, {
   mode: 'development',
-  devtool:'source-map',
+  output: {
+      filename: 'js/[name].js'
+  },
+  devtool: 'source-map',
   devServer: {
     port: 4000,
     static: {
@@ -98,7 +101,21 @@ module.exports = merge(common, {
           }
         ]
       })
-    ]
+    ],
+    splitChunks: {
+      cacheGroups: {
+        jquery: {
+          test: /[\\/]node_modules[\\/]jquery[\\/]/,
+          chunks: 'initial',
+          name:'jquery'
+        },
+        bootstrap: {
+          test: /[\\/]node_modules[\\/]bootstrap[\\/]/,
+          chunks: 'initial',
+          name:'bootstrap'
+        }
+      }
+    }
   },
   plugins: [
     new MiniCssExtractPlugin({
