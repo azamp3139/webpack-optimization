@@ -7,7 +7,8 @@ const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 module.exports = merge(common, {
   mode: 'development',
   output: {
-      filename: 'js/[name].js'
+      filename: 'js/[name].js',
+      publicPath:'/static/'
   },
   devtool: 'source-map',
   devServer: {

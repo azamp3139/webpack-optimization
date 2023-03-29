@@ -5,6 +5,7 @@ module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
   output: {
-    filename: 'js/[name].[contenthash:12].js'
+    filename: 'js/[name].[contenthash:12].js',
+    publicPath:'/static/'
   },
 })
