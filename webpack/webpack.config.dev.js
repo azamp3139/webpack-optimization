@@ -4,11 +4,12 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
 module.exports = merge(common, {
   mode: 'development',
   output: {
-      filename: 'js/[name].js',
-      publicPath:'/static/'
+    filename: 'js/[name].js',
+    publicPath: '/static/'
   },
   devtool: 'source-map',
   devServer: {
@@ -87,7 +88,7 @@ module.exports = merge(common, {
           options: {
             plugins: [
               ['imagemin-mozjpeg', { quality: 40 }],
-              ['imagemin-pngquant', { quality: [0.65, 0.90] }],
+              ['imagemin-pngquant', { quality: [0.65, 0.90], speed: 4 }],
             ]
           }
         },
@@ -108,12 +109,12 @@ module.exports = merge(common, {
         jquery: {
           test: /[\\/]node_modules[\\/]jquery[\\/]/,
           chunks: 'initial',
-          name:'jquery'
+          name: 'jquery'
         },
         bootstrap: {
           test: /[\\/]node_modules[\\/]bootstrap[\\/]/,
           chunks: 'initial',
-          name:'bootstrap'
+          name: 'bootstrap'
         }
       }
     }
@@ -121,6 +122,19 @@ module.exports = merge(common, {
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/styles.css'
+    }),
+    new CompressionPlugin({
+      filename:'[path][base].gz',
+      algorithm: 'gzip',
+      test: /\.(js|css)$/,
+    }),
+    new CompressionPlugin({
+      filename:'[path][base].br',
+      algorithm: 'brotliCompress',
+      test: /\.(js|css)$/,
+      compressionOptions: {
+        level: 11
+      }
     })
   ]
 })
